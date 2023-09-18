@@ -30,22 +30,30 @@ struct ContentView: View {
                 
                 // MARK: - SCORE
                 HStack {
-                    Text("Your\nCoins".uppercased())
+                    HStack {
+                        Text("Your\nCoins".uppercased())
+                            .scoreLabelStyle()
+                            .multilineTextAlignment(.trailing)
                         
+                        Text("100")
+                            .scoreNumberStyle()
+                            .modifier(ScoreNumberModifier())
+                    }
+                    .modifier(ScoreContainerModifier())
                     
-                    Text("100")
-                        .foregroundColor(Color.white)
-                        .font(.system(.title, design: .rounded))
-                        .fontWeight(.heavy)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                    Spacer()
+                    
+                    HStack {
+                        Text("200")
+                            .scoreNumberStyle()
+                            .modifier(ScoreNumberModifier())
+                        
+                        Text("High\nScore".uppercased())
+                            .scoreLabelStyle()
+                            .multilineTextAlignment(.leading)
+                    }
+                    .modifier(ScoreContainerModifier())
                 }
-                .padding(.vertical, 4)
-                .padding(.horizontal, 16)
-                .frame(minWidth: 128)
-                .background(
-                    Capsule()
-                        .foregroundColor(Color("ColorTransparentBlack"))
-                )
                 // MARK: - SLOT MACHINE
                 // MARK: - FOOTER
                 
