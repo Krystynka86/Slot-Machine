@@ -11,6 +11,7 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     
     let symbols = ["gfx-bell", "gfx-seven", "gfx-cherry", "gfx-coin", "gfx-strawberry", "gfx-grape"]
+    let haptics = UINotificationFeedbackGenerator()
     
     @State private var showingInfoView: Bool = false
     @State private var reels: Array = [0, 1, 2]
@@ -32,9 +33,12 @@ struct ContentView: View {
         //reels[1] = Int.random(in: 0...symbols.count - 1)
         //reels[2] = Int.random(in: 0...symbols.count - 1)
         
-        reels = reels.map({ _ in Int.random(in: 0...symbols.count - 1)
+        reels = reels.map({ _ in
+            Int.random(in: 0...symbols.count - 1)
         })
         playSound(sound: "spin", type: "mp3")
+        haptics.notificationOccurred(.success)
+        
     }
     // CHECK THE WINNING
     func checkWinning() {
@@ -73,6 +77,7 @@ struct ContentView: View {
         isActiveBet20 = true
         isActiveBet10 = false
         playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     func activateBet10() {
@@ -80,6 +85,7 @@ struct ContentView: View {
         isActiveBet10 = true
         isActiveBet20 = false
         playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
    
